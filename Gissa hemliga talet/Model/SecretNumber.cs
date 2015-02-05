@@ -7,23 +7,56 @@ namespace Gissa_hemliga_talet.Model
 {
     public class SecretNumber
     {
-        int MaxNumberOfGuesses = 7;
-        int _number;
+        private const int MaxNumberOfGuesses = 7;
+        private int _number;
         List<int>  _previousGuesses;
 
+        public void Initialize()
+        {
+            Random random = new Random();
+            int _number = random.Next(1, 100);
+            _previousGuesses.Clear();
+            outcome = Outcome.Indefinite;
+        }
+        
         public bool CanMakeGuess
         {
-            get;
+            get{
+                if(_previousGuesses[6] != MaxNumberOfGuesses)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
         public int Count
         {
-            get;
+            get
+            {
+                return _previousGuesses.Count;
+            }
+
+
         }
 
         public int? Number
         {
-            get;
+           public get
+            {
+                if (CanMakeGuess)
+                {
+                    return null;
+                }
+                else
+                {
+                    return _number;
+                }
+                
+            }
         }       
         enum Outcome{
             Indefinite,
@@ -35,18 +68,15 @@ namespace Gissa_hemliga_talet.Model
         }
         public Outcome outcome
         {
-            get;
-            set;
+            get { _previousGuesses.Last }
+
+            set{outcome = _previousGuesses.Last }
         }
 
         public  IEnumerable<int> PreviousGuesses
         {
             get;
-        }
-        public void Initialize(){
-
-        }
-        
+        }       
         public Outcome MakeGuess(int guess)
         {
             if (guess < 1 || guess > 100)
@@ -65,7 +95,7 @@ namespace Gissa_hemliga_talet.Model
             {
                 outcome = Outcome.High;
             }
-            else if(guess == _previousGuesses.Contains(guess))
+            else if(_previousGuesses.Contains(guess))
             {
                 outcome = Outcome.PreviousGuess;
             }

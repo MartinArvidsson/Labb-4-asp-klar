@@ -1,22 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
 namespace Gissa_hemliga_talet.Model
 {
+    public enum Outcome
+    {
+        Indefinite,
+        Low,
+        High,
+        Correct,
+        NoMoreGuesses,
+        PreviousGuess,
+    }
     public class SecretNumber
     {
         private const int MaxNumberOfGuesses = 7;
         private int _number;
-        List<int>  _previousGuesses;
+        List<int>  _previousGuesses = new List<int>(MaxNumberOfGuesses);
 
         public void Initialize()
         {
-            Random random = new Random();
-            int _number = random.Next(1, 100);
             _previousGuesses.Clear();
-            outcome = Outcome.Indefinite;
+            Random random = new Random();
+            _number = random.Next(1, 101);
+            Outcome = Outcome.Indefinite;
+        }
+        public Outcome Outcome
+        {
+            get;
+            private set;
         }
         
         public bool CanMakeGuess
@@ -45,7 +60,7 @@ namespace Gissa_hemliga_talet.Model
 
         public int? Number
         {
-           public get
+            get
             {
                 if (CanMakeGuess)
                 {
@@ -58,24 +73,10 @@ namespace Gissa_hemliga_talet.Model
                 
             }
         }       
-        enum Outcome{
-            Indefinite,
-            Low,
-            High,
-            Correct,
-            NoMoreGuesses,
-            PreviousGuess,
-        }
-        public Outcome outcome
+        public  IReadOnlyList<int> PreviousGuesses
         {
-            get { _previousGuesses.Last }
-
-            set{outcome = _previousGuesses.Last }
-        }
-
-        public  IEnumerable<int> PreviousGuesses
-        {
-            get;
+            get { return _previousGuesses.AsReadOnly(); }
+            
         }       
         public Outcome MakeGuess(int guess)
         {
@@ -83,31 +84,33 @@ namespace Gissa_hemliga_talet.Model
             {
                 throw new ArgumentOutOfRangeException();
             }
+            else if (_previousGuesses.Contains(guess))
+            {
+                Outcome = Outcome.PreviousGuess;
+            }
             else if(guess == _number)
             {
-                outcome = Outcome.Correct;
+                Outcome = Outcome.Correct;
+                //Gissat korrekt, inga fler gissningar ska gå att göra, resetknappen ska synas m.m..
             }
             else if(guess < _number)
             {
-                outcome = Outcome.Low;
+                Outcome = Outcome.Low;
             }
             else if(guess > _number)
             {
-                outcome = Outcome.High;
-            }
-            else if(_previousGuesses.Contains(guess))
-            {
-                outcome = Outcome.PreviousGuess;
+                Outcome = Outcome.High;
             }
             else if(guess == MaxNumberOfGuesses)
             {
-                outcome = Outcome.NoMoreGuesses;
+                Outcome = Outcome.NoMoreGuesses;
             }
+            return Outcome;
         }
 
         public SecretNumber()
         {
-
+            Initialize();
         }
 
     }

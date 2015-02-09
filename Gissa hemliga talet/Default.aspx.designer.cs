@@ -40,6 +40,15 @@ namespace Gissa_hemliga_talet {
         protected global::System.Web.UI.WebControls.Button GuessButton;
         
         /// <summary>
+        /// ResetButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ResetButton;
+        
+        /// <summary>
         /// Noemptytextbox control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,33 @@ namespace Gissa_hemliga_talet {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RangeValidator ValidationOfRangeTempStep;
+        
+        /// <summary>
+        /// ResultPlaceholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder ResultPlaceholder;
+        
+        /// <summary>
+        /// PreviousGuessIs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PreviousGuessIs;
+        
+        /// <summary>
+        /// PreviousGuessesArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PreviousGuessesArea;
         
         /// <summary>
         /// PresentationArea control.

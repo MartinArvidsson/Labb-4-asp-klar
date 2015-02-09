@@ -17,27 +17,36 @@ namespace Gissa_hemliga_talet.Model
     }
     public class SecretNumber
     {
-        private const int MaxNumberOfGuesses = 7;
-        private int _number;
-        List<int>  _previousGuesses = new List<int>(MaxNumberOfGuesses);
-
-        public void Initialize()
+        private const int MaxNumberOfGuesses = 6; // Antal gissningar
+        private int _number; //Vad som ska bli ett randomtal
+        List<int>  _previousGuesses = new List<int>(MaxNumberOfGuesses); // Listan där gissnignarna ska sparas, storleken är maxgisnningar
+        public SecretNumber()
         {
-            _previousGuesses.Clear();
-            Random random = new Random();
-            _number = random.Next(1, 101);
-            Outcome = Outcome.Indefinite;
+            Initialize(); // Startar initialize när klassen körs
         }
-        public Outcome Outcome
+        public void Initialize() 
+        {
+            _previousGuesses.Clear(); //  Tömmer listan med tidigare gissningar
+            Random random = new Random();// Ger _number ett randomtal
+            _number = random.Next(1, 101);// Ger _number ett randomtal
+            Outcome = Outcome.Indefinite; 
+        }
+        public Outcome Outcome 
         {
             get;
             private set;
         }
-        
-        public bool CanMakeGuess
+        public int Count
+        {
+            get
+            {
+                return _previousGuesses.Count;
+            }
+        }       
+        public bool CanMakeGuess 
         {
             get{
-                if(_previousGuesses[6] != MaxNumberOfGuesses)
+                if(Count != MaxNumberOfGuesses)
                 {
                     return true;
                 }
@@ -47,22 +56,11 @@ namespace Gissa_hemliga_talet.Model
                 }
             }
         }
-
-        public int Count
-        {
-            get
-            {
-                return _previousGuesses.Count;
-            }
-
-
-        }
-
         public int? Number
         {
             get
             {
-                if (CanMakeGuess)
+                if (CanMakeGuess == true)
                 {
                     return null;
                 }
@@ -75,14 +73,21 @@ namespace Gissa_hemliga_talet.Model
         }       
         public  IReadOnlyList<int> PreviousGuesses
         {
-            get { return _previousGuesses.AsReadOnly(); }
+            get 
+            { 
+                return _previousGuesses.AsReadOnly(); 
+            }
             
         }       
         public Outcome MakeGuess(int guess)
-        {
+        {            
             if (guess < 1 || guess > 100)
             {
                 throw new ArgumentOutOfRangeException();
+            }
+            else if (CanMakeGuess == false)
+            {
+                Outcome = Outcome.NoMoreGuesses;
             }
             else if (_previousGuesses.Contains(guess))
             {
@@ -91,7 +96,6 @@ namespace Gissa_hemliga_talet.Model
             else if(guess == _number)
             {
                 Outcome = Outcome.Correct;
-                //Gissat korrekt, inga fler gissningar ska gå att göra, resetknappen ska synas m.m..
             }
             else if(guess < _number)
             {
@@ -100,18 +104,11 @@ namespace Gissa_hemliga_talet.Model
             else if(guess > _number)
             {
                 Outcome = Outcome.High;
-            }
-            else if(guess == MaxNumberOfGuesses)
-            {
-                Outcome = Outcome.NoMoreGuesses;
-            }
+            }    
+            _previousGuesses.Add(guess);
+
+
             return Outcome;
         }
-
-        public SecretNumber()
-        {
-            Initialize();
-        }
-
     }
 }

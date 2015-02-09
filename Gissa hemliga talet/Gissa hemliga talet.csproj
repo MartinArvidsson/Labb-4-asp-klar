@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="Model\Error.html" />
     <Content Include="Model\Script.js" />
     <Content Include="Style\Backgroundpic.jpg" />
     <Content Include="Web.config" />

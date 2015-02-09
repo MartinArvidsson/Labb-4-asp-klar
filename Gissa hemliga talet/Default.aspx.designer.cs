@@ -76,6 +76,15 @@ namespace Gissa_hemliga_talet {
         protected global::System.Web.UI.WebControls.PlaceHolder ResultPlaceholder;
         
         /// <summary>
+        /// PresentationArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PresentationArea;
+        
+        /// <summary>
         /// PreviousGuessIs control.
         /// </summary>
         /// <remarks>
@@ -92,14 +101,5 @@ namespace Gissa_hemliga_talet {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label PreviousGuessesArea;
-        
-        /// <summary>
-        /// PresentationArea control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PresentationArea;
     }
 }

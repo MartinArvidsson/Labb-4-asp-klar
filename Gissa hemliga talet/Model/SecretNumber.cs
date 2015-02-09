@@ -17,9 +17,9 @@ namespace Gissa_hemliga_talet.Model
     }
     public class SecretNumber
     {
-        private const int MaxNumberOfGuesses = 6; // Antal gissningar
+        private const int MaxNumberOfGuesses = 7; // Antal gissningar
         private int _number; //Vad som ska bli ett randomtal
-        List<int>  _previousGuesses = new List<int>(MaxNumberOfGuesses); // Listan där gissnignarna ska sparas, storleken är maxgisnningar
+        List<int> _previousGuesses = new List<int>(MaxNumberOfGuesses); // Listan där gissnignarna ska sparas, storleken är maxgisnningar
         public SecretNumber()
         {
             Initialize(); // Startar initialize när klassen körs
@@ -80,35 +80,42 @@ namespace Gissa_hemliga_talet.Model
             
         }       
         public Outcome MakeGuess(int guess)
-        {            
+        {
             if (guess < 1 || guess > 100)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            else if (CanMakeGuess == false)
+            else
             {
-                Outcome = Outcome.NoMoreGuesses;
-            }
-            else if (_previousGuesses.Contains(guess))
-            {
-                Outcome = Outcome.PreviousGuess;
-            }
-            else if(guess == _number)
-            {
-                Outcome = Outcome.Correct;
-            }
-            else if(guess < _number)
-            {
-                Outcome = Outcome.Low;
-            }
-            else if(guess > _number)
-            {
-                Outcome = Outcome.High;
-            }    
-            _previousGuesses.Add(guess);
+                if (_previousGuesses.Contains(guess))
+                {
+                    Outcome = Outcome.PreviousGuess;
+                    return Outcome;
+                }
+                else
+                {
+                    _previousGuesses.Add(guess);
+                    if (CanMakeGuess == false)
+                    {
+                        Outcome = Outcome.NoMoreGuesses;
+                        return Outcome;
+                    }
+                    else if (guess == _number)
+                    {
+                        Outcome = Outcome.Correct;
+                    }
+                    else if (guess < _number)
+                    {
+                        Outcome = Outcome.Low;
+                    }
+                    else if (guess > _number)
+                    {
+                        Outcome = Outcome.High;
+                    }
 
-
-            return Outcome;
+                    return Outcome;
+                }
+            }
         }
     }
 }

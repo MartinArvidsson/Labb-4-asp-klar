@@ -35,6 +35,7 @@
                 </asp:RangeValidator><br />
 
                 <asp:PlaceHolder ID="ResultPlaceholder" runat="server" Visible="false">
+
                     <asp:Label ID="PresentationArea" runat="server" Text=""></asp:Label><br />
                     <asp:Label ID="PreviousGuessIs" runat="server" Text="Tidigare gissningar är:"></asp:Label>
                     <asp:Label ID="PreviousGuessesArea" runat="server" Text=""></asp:Label>                                                                               

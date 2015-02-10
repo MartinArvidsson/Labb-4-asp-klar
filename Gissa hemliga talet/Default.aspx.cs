@@ -50,7 +50,6 @@ namespace Gissa_hemliga_talet
                 {
                     PresentationArea.Text = "Korrekt! du gissade det hemliga talet!";
                     Guessarea.Enabled = false;
-                    Guessarea.Text = "Tryck på reset för att starta om!";
                     GuessButton.Visible = false;
                     ResetButton.Visible = true;
                 }

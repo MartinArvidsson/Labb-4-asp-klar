@@ -15,7 +15,7 @@
         Gissa ett tal mellan 1-100:<asp:TextBox ID="Guessarea" runat="server"></asp:TextBox>
                 
                 <asp:Button ID="GuessButton" runat="server" Text="Kör!" OnClick="GuessButton_Click" />
-                <asp:Button ID="ResetButton" runat="server" Text="Reset" Visible="false" OnClick="ResetButton_Click" /><br />
+                <asp:Button ID="ResetButton" runat="server" Text="Reset" Visible="false" OnClick="ResetButton_Click" CausesValidation="false" /><br />
                 <asp:RequiredFieldValidator ID="Noemptytextbox" 
                 runat="server" 
                 ErrorMessage="Fältet kan inte vara tomt"

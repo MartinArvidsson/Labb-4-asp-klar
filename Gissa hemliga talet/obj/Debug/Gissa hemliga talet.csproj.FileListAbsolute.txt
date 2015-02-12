@@ -10,3 +10,9 @@ C:\Users\Martin\Desktop\ASP 4\Gissa hemliga talet\bin\Gissa hemliga talet.pdb
 C:\Users\Martin\Desktop\ASP 4\Gissa hemliga talet\obj\Debug\Gissa hemliga talet.csprojResolveAssemblyReference.cache
 C:\Users\Martin\Desktop\ASP 4\Gissa hemliga talet\obj\Debug\Gissa hemliga talet.dll
 C:\Users\Martin\Desktop\ASP 4\Gissa hemliga talet\obj\Debug\Gissa hemliga talet.pdb
+C:\Users\Martin\Desktop\asp 4 2.0\Gissa hemliga talet\bin\Gissa hemliga talet.dll.config
+C:\Users\Martin\Desktop\asp 4 2.0\Gissa hemliga talet\bin\Gissa hemliga talet.dll
+C:\Users\Martin\Desktop\asp 4 2.0\Gissa hemliga talet\bin\Gissa hemliga talet.pdb
+C:\Users\Martin\Desktop\asp 4 2.0\Gissa hemliga talet\obj\Debug\Gissa hemliga talet.csprojResolveAssemblyReference.cache
+C:\Users\Martin\Desktop\asp 4 2.0\Gissa hemliga talet\obj\Debug\Gissa hemliga talet.dll
+C:\Users\Martin\Desktop\asp 4 2.0\Gissa hemliga talet\obj\Debug\Gissa hemliga talet.pdb

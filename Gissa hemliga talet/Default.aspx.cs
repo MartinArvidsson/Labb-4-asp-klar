@@ -72,7 +72,7 @@ namespace Gissa_hemliga_talet
         }
 
         protected void ResetButton_Click(object sender, EventArgs e)
-        {
+        {           
             SecretNumber.Initialize();
         }
     }

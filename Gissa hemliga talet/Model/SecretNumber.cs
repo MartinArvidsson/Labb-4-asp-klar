@@ -19,9 +19,10 @@ namespace Gissa_hemliga_talet.Model
     {
         private const int MaxNumberOfGuesses = 7; // Antal gissningar
         private int _number; //Vad som ska bli ett randomtal
-        List<int> _previousGuesses = new List<int>(MaxNumberOfGuesses); // Listan där gissnignarna ska sparas, storleken är maxgisnningar
+        List<int> _previousGuesses; // Listan där gissnignarna ska sparas, storleken är maxgisnningar
         public SecretNumber()
         {
+            _previousGuesses = new List<int>(MaxNumberOfGuesses);
             Initialize(); // Startar initialize när klassen körs
         }
         public void Initialize() 

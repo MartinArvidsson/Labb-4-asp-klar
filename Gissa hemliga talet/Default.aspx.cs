@@ -35,33 +35,36 @@ namespace Gissa_hemliga_talet
                 {
                     PresentationArea.Text = "Du gissade för lågt!";
                 }
-                if (SecretNumber.Outcome == Outcome.High)
+                else if (SecretNumber.Outcome == Outcome.High)
                 {
                     PresentationArea.Text = "Du gissade för högt!";
                 }
-                if (SecretNumber.Outcome == Outcome.NoMoreGuesses)
-                {
-                    PresentationArea.Text = string.Format("Du har slut på gissningar :( svaret var {0}",SecretNumber.Number);
-                    Guessarea.Enabled = false;
-                    GuessButton.Visible = false;
-                    ResetButton.Visible = true;
-                }
-                if (SecretNumber.Outcome == Outcome.Correct) 
-                {
-                    PresentationArea.Text = "Korrekt! du gissade det hemliga talet!";
-                    Guessarea.Enabled = false;
-                    GuessButton.Visible = false;
-                    ResetButton.Visible = true;
-                }
-                if (SecretNumber.Outcome == Outcome.PreviousGuess)
+                else if (SecretNumber.Outcome == Outcome.PreviousGuess)
                 {
                     PresentationArea.Text = "Redan gissat det talet!";
                 }
 
+                if (!SecretNumber.CanMakeGuess)
+                {
+                    if (SecretNumber.Outcome == Outcome.Correct)
+                    {
+                        PresentationArea.Text = "Korrekt! du gissade det hemliga talet ☺!";
+                    }
+                    else
+                    {
+                        PresentationArea.Text += string.Format(" Du har slut på gissningar ☹ svaret var {0}", SecretNumber.Number);
+                    }
+                    
+                    Guessarea.Enabled = false;
+                    GuessButton.Visible = false;
+                    ResetButton.Visible = true;
+                }
+
+
                 //PresentationArea.Text = SecretNumber.Outcome.ToString();
                 ResultPlaceholder.Visible=true;
                 PreviousGuessesArea.Text = string.Join(" ",SecretNumber.PreviousGuesses);
-                Console.Write(SecretNumber.PreviousGuesses);
+                //Console.Write(SecretNumber.PreviousGuesses);
 
                 //PreviousGuessesArea.Text = ; //<- Tidigare gissningar ska presenteras här-
                 //Kör en session där vad man skickar till SecretNumber.cs sparas.
@@ -74,6 +77,8 @@ namespace Gissa_hemliga_talet
         protected void ResetButton_Click(object sender, EventArgs e)
         {           
             SecretNumber.Initialize();
+            //Session.Clear();
+            //Session.Remove("SecretNumber");
         }
     }
 }
